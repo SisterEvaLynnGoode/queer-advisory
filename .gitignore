@@ -7,7 +7,4 @@ out/
 *.tsbuildinfo
 .DS_Store
 
-# Hero video files are too large for Git — store separately and add to Vercel
-# via the dashboard or re-run prep_scrub_video.bat locally.
-public/hero/*.mp4
-public/hero/*.webm
+.vercel

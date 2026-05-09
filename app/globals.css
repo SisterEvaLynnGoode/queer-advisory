@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-ink:    #0E0F11;
+  --color-cream:  #F4F1EA;
+  --color-coral:  #E85A4F;
+  --color-teal:   #1F8A8A;
+  --color-card:   #161719;
+
+  /* Fonts — CSS vars injected by next/font */
+  --font-heading: var(--font-fraunces), Georgia, serif;
+  --font-body:    var(--font-inter), system-ui, sans-serif;
+  --font-mono:    var(--font-jetbrains-mono), "Courier New", monospace;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0E0F11;
+  color: #F4F1EA;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #0E0F11;
+  color: #F4F1EA;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ─── Focus ──────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #E85A4F;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+:focus:not(:focus-visible) { outline: none; }
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Card border utility ────────────────────────────────────────────────── */
+@utility card-border {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Eyebrow label utility ──────────────────────────────────────────────── */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.5);
+}
+
+/* ─── Section spacing ────────────────────────────────────────────────────── */
+@utility section-pad {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@utility section-pad-sm {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}

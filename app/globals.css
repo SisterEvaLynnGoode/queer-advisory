@@ -66,6 +66,18 @@ body {
   color: rgba(244, 241, 234, 0.5);
 }
 
+/* ─── Viewport height — svh excludes mobile browser chrome (address bar).
+       Cascade: vh is the fallback, svh overrides when supported (iOS 15.4+,
+       Chrome Android 108+). This fixes the scroll-scrub "doesn't finish" bug. */
+.h-real-screen {
+  height: 100vh;
+  height: 100svh;
+}
+.h-scrub-outer {
+  height: 400vh;
+  height: 400svh;
+}
+
 /* ─── Section spacing ────────────────────────────────────────────────────── */
 @utility section-pad {
   padding-top: 8rem;

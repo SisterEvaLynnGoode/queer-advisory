@@ -13,15 +13,18 @@ export default function LenisProvider({
   const prefersReduced = useReducedMotion()
 
   useEffect(() => {
-    if (prefersReduced) {
-      // No smooth scroll when the user has requested reduced motion.
-      // ScrollTrigger still works — it falls back to native scroll events.
-      return
-    }
+    // On touch/mobile devices the OS already provides smooth momentum scroll.
+    // Running Lenis on top intercepts touch events and conflicts with native
+    // scroll, causing jank on the video scrub. ScrollTrigger reads native
+    // scroll events fine without Lenis.
+    const isTouchPrimary = window.matchMedia('(pointer: coarse)').matches
+    if (isTouchPrimary) return
+
+    // Reduced-motion users also skip Lenis — no smooth override needed.
+    if (prefersReduced) return
 
     const lenis = new Lenis()
 
-    // Wire Lenis to GSAP's ticker so ScrollTrigger stays in sync
     lenis.on('scroll', ScrollTrigger.update)
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000)
